@@ -53,6 +53,35 @@ image_segment(img, index = "R/(G/B)", filter = 3)
 ```
 
 
+# Análise de imagem única
+```{r}
+
+res <- 
+  analyze_objects(img,
+                  reference = TRUE,
+                  reference_area = 20,
+                  back_fore_index = "R/(G/B)", # padrão
+                  fore_ref_index = "B-R",      # padrão
+                  marker = "length",           # plota o comprimento
+                  watershed = FALSE)
+```
+
+
+# Análise de imagem em lote
+```{r}
+
+res <- 
+  analyze_objects(pattern = "img",             # busca o padrão no diretório
+                  reference = TRUE,
+                  reference_area = 20,
+                  back_fore_index = "R/(G/B)",
+                  marker = "length",
+                  save_image = TRUE,           # salva a imagem
+                  dir_processed = "proc",      # cria uma subpasta 
+                  marker_size = 2,
+                  watershed = FALSE)
+```
+
 
 
 ```{=html}
