@@ -1,0 +1,60 @@
+---
+title: "Códigos exemplo pliman"
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(cache = FALSE,
+                      comment = "##",
+                      collapse = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+
+```{r include = FALSE}
+knitr::opts_knit$set(root.dir = "E:/Desktop/UFSC/projetos/pesquisa/desempenho_linhaca/pliman_rbras2022/imgs")
+```
+
+# Diretório
+```{r eval=FALSE}
+setwd("E:/Desktop/UFSC/projetos/pesquisa/desempenho_linhaca/pliman_rbras2022/imgs")
+```
+
+
+
+# Pacote e imagem
+```{r}
+library(pliman)
+img <- image_import("img3.jpg")
+
+```
+
+# Escala de cinza
+
+```{r}
+cinza <- image_index(img, "R/(G/B)")
+plot(cinza)
+plot(cinza, type = "density")
+
+```
+
+# Imagem binária
+
+```{r}
+image_binary(img, "R/(G/B)")
+image_binary(img, "R/(G/B)", filter = 3)
+```
+
+# Imagem segmentada
+
+```{r}
+image_segment(img, index = "R/(G/B)", filter = 3)
+```
+
+
+
+
+```{=html}
+<div align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=138602&s=2' border='0' alt='Free Website Hit Counter'></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">Free website hit counter</a></small></div>
+```

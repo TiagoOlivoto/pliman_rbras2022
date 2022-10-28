@@ -1,0 +1,149 @@
+---
+title: "Scripts e códigos"
+subtitle: "Luz, câmera, pliman! morfometria foliar do linho no software R"
+---
+
+
+Esta página contém os códigos e imagens de exemplo que podem ser utilizados para reproduzir os exemplos apresentados no resumo "Luz, câmera, pliman! morfometria foliar do linho no software R" apresentado durante a 66a Reunião Brasileira da Sociedade Internacional de biometria
+
+
+# Desenvolvedor
+
+[![](imgs/site.png)](https://olivoto.netlify.app/)
+
+
+# Visão geral
+
+<img src="https://raw.githubusercontent.com/TiagoOlivoto/pliman/master/man/figures/logo_pliman.svg" align="right" width="250" height="250"/>
+
+{pliman} (**pl**ant **im**age **an**alysis) foi desenvolvido (mas não limitado) para analisar imagens de plantas, especialmente relacionadas à análise de folhas e sementes. O pacote irá ajudá-lo a:
+
+- Medir a severidade das doenças foliares;
+- Contar o número de lesões;
+- Obter características da forma das lesões;
+- Contar objetos em uma imagem;
+- Obter características dos objetos (área, perímetro, raio, circularidade, excentricidade, solidez, alongamento);
+- Obter os valores RGB para cada objeto em uma imagem;
+- Obter as coordenadas dos objetos;
+- Obter os contornos dos objetos;
+- Isolar objetos;
+- Medições de objetos de plotagem.
+
+# Instalação
+
+Instale a versão lançada do pliman do [CRAN](https://CRAN.R-project.org/package=pliman) com:
+
+```{r, eval = FALSE}
+install.packages ("pliman")
+```
+
+Ou instale a versão de desenvolvimento do [GitHub](https://github.com/TiagoOlivoto/pliman)
+
+```{r, eval = FALSE}
+#instalação do github
+if(!require(devtools)){
+  install.packages("devtools")
+}
+
+install_github("TiagoOlivoto/pliman")
+
+# Para instalar um HTML vinheta, use
+devtools::install_github("TiagoOlivoto/pliman", build_vignettes = TRUE)
+
+```
+
+*Observação*: Se você é um usuário do Windows, é recomendável primeiro baixar e instalar a versão mais recente do [Rtools](https://cran.r-project.org/bin/windows/Rtools/). Para obter as notas de lançamento mais recentes sobre esta versão de desenvolvimento, consulte o [arquivo NEWS](https://tiagoolivoto.github.io/metan/news/index.html).
+
+# Citação
+
+Para citar o pacote `pliman` em seus estudos, por favor, use a seguinte referência:
+
+> Olivoto, Tiago. 2022. "Luzes, Câmera, Pliman! Um Pacote R para Análise de Imagens de Plantas". Methods in Ecology and Evolution 13(4): 789--98 <A HREF = "https://onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13803">doi: 10.1111/2041-210X. 13803</A>
+
+<a href="https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.13803" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/TiagoOlivoto/tiagoolivoto/master/static/tutorials/pliman_ufsc_fito/paper.png" width="1000" height="273"/></a>
+
+```{r}
+citation("pliman")
+```
+
+# Pacotes úteis
+
+Os resultados gerados pelo pacote `pliman` são retornados como objetos `data.frame`, o que permite manipulação futura dentro do R. Portanto, sugere-se que os seguintes pacotes sejam instalados.
+
+```{r warning=FALSE, mensagem = FALSE}
+library(tidyverse) # manipulação de dados
+library(metan) # estatísticas descritivas / organizar gráficos
+library(pliman) # análise de imagem
+```
+
+# Como reproduzir
+
+Primeiro, baixe o arquivo `.zip` que contém o site estático.
+
+<a href="https://github.com/TiagoOlivoto/pliman_tut/archive/refs/heads/master.zip"> <button class="btn btn-success"><i class="fa fa-save"> </i> Baixe as imagens e scripts</button> </a>
+
+A pasta `img` tem a seguinte estrutura.
+
+```{r echo=FALSE}
+fs::dir_tree("E:/Desktop/UFSC/projetos/pesquisa/desempenho_linhaca/pliman_rbras2022", recurse = 1)
+```
+
+O material html (`_site/index.html`) dará acesso ao site. Dentro dele, será possível visualizar todos os exemplos, com códigos e saídas. Para reproduzir o material, basta utilizar os arquivos `*.qmd`.
+
+Para renderização, sugere-se que a pasta `imgs` seja definida como o diretório padrão. No meu caso, defino o diretório usando o seguinte comando.
+
+```{r eval=FALSE}
+# muda de acordo com sua pasta
+setwd("E:/Desktop/UFSC/cursos/pliman_tut/imgs")
+```
+
+<br>
+
+# slides
+
+Veja os slides [aqui](https://tiagoolivoto.github.io/slides_R/slides/pliman_inta/index.html#1)
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_url('https://tiagoolivoto.github.io/slides_R/slides/pliman_tut')
+
+```
+
+
+# Licença
+
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/TiagoOlivoto/tiagoolivoto/master/static/img/gemsr/license.jpg" alt="Licença Creative Commons" style="border-width:0" width="300" height="80"/></a><br />Este conteúdo está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>. O resumo legível da licença afirma que você tem o direito de:
+
+-   **Compartilhar** --- copie e redistribua o material em qualquer meio ou formato.
+
+-   **Adaptar** --- remixar, transformar e construir sobre o material
+
+-   **Atribuir** --- Você deve dar o crédito apropriado, fornecer um link para a licença e indicar se foram feitas alterações. Você deve fazê-lo sob quaisquer circunstâncias razoáveis, mas de forma alguma sugerindo que o licenciante endossa você ou seu uso.
+
+Esta licença e válida sob os seguintes termos:
+
+-   **Não comercial (NC)** --- Você não pode usar o material para fins comerciais.
+-   **Share Alike (SA)** --- Se você remixar, transformar ou desenvolver o material, deverá distribuir suas contribuições sob a mesma licença do original.
+-   **Sem restrições adicionais** --- Você não pode aplicar termos legais ou medidas tecnológicas que restrinjam legalmente outras pessoas de fazer qualquer coisa que a licença permita.
+
+# Selo DC
+
+<a rel="license" href="https://bendeivide.github.io/dc/" target="_blank" rel="noopener"><img src="https://github.com/bendeivide/dc/raw/main/SeloDC-preto2.png" alt="Licença Creative Commons" style="border-width:0" width="500" height="200"/></a>
+
+O selo [selo Democratizando Conhecimento](https://bendeivide.github.io/dc/) (DC) é uma ideia criada pelo Prof. [Ben Dêivid](https://bendeivide.github.io/). O selo é compatível com a licença [Creative Commons CC BY NC SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/) e é utilizado aqui para garantir que o acesso de todo esse material seja livre, gratuíto e de código aberto. Meu principal objetivo com isso é democratizar o uso e aplicação do R nas Ciências Agrárias.
+
+# Visite-nos!
+
+```{r}
+#| echo: false
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=-48.505555555556,
+             lat=-27.582222222222,
+             popup="The birthplace of R")
+
+```
+
+```{=html}
+<div align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=138602&s=2' border='0' alt='Free Website Hit Counter'></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">Free website hit counter</a></small></div>
+```

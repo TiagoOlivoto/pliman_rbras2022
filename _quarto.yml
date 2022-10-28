@@ -1,0 +1,66 @@
+project:
+  type: website
+  output-dir: docs
+
+comments:
+  hypothesis: 
+    theme: clean
+  
+theme:
+  light: flatly
+  dark: darkly
+
+website:
+  repo-url: https://github.com/TiagoOlivoto/classes
+  repo-actions: [edit, issue]
+  title: "Aulas"
+  page-footer:
+    border: true
+    background: light
+    left: "66a RBras - Florianópolis/SC"
+    right: "Prof. Dr. Tiago Olivoto FIT/CCA/UFSC "
+  page-navigation: true
+  navbar:
+    background: "#0759e8"
+    search: true
+    left:
+      - text: "About"
+        file: 00_about.qmd
+        icon: fa fa-home
+      - text: "Código"
+        file: 01_code.qmd
+        
+
+    right:
+      - icon: "fab fa-researchgate fa"
+        href: https://www.researchgate.net/profile/Tiago_Olivoto
+      - icon: bi bi-github
+        href: https://github.com/TiagoOlivoto/classes
+      - icon: bi bi-twitter
+        href: https://twitter.com/tolivoto
+      - icon: "fab fa-mendeley fa"
+        href: https://www.mendeley.com/profiles/tiago-olivoto/
+
+
+format:
+  html:
+    css: style.css
+    theme: 
+       light: journal
+       dark: darkly
+    toc: true
+    toc-title: "Nesta página"
+    toc-depth: 4
+    number-sections: false
+    number-depth: 3
+    smooth-scroll: true
+    code-fold: false
+    code-summary: "Mostrar script"
+    code-tools: true
+    code-block-bg: "#f5f2f2"
+    highlight-style: tango
+    code-block-border-left: "#31BAE9"
+    
+execute:
+  collapse: true
+  out-width: "100%"
