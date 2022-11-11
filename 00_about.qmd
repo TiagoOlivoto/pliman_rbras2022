@@ -3,14 +3,11 @@ title: "Scripts e códigos"
 subtitle: "Luz, câmera, pliman! morfometria foliar do linho no software R"
 ---
 
-
-Esta página contém os códigos e imagens de exemplo que podem ser utilizados para reproduzir os exemplos apresentados no resumo "Luz, câmera, pliman! morfometria foliar do linho no software R" apresentado durante a 66a Reunião Brasileira da Sociedade Internacional de biometria
-
+Esta página contém os códigos e imagens de exemplo que podem ser utilizados para reproduzir os exemplos apresentados no resumo "**Luz, câmera, pliman! morfometria foliar do linho no software R**" apresentado durante a 66a Reunião Brasileira da Sociedade Internacional de biometria.
 
 # Desenvolvedor
 
 [![](imgs/site.png)](https://olivoto.netlify.app/)
-
 
 # Visão geral
 
@@ -18,16 +15,16 @@ Esta página contém os códigos e imagens de exemplo que podem ser utilizados p
 
 {pliman} (**pl**ant **im**age **an**alysis) foi desenvolvido (mas não limitado) para analisar imagens de plantas, especialmente relacionadas à análise de folhas e sementes. O pacote irá ajudá-lo a:
 
-- Medir a severidade das doenças foliares;
-- Contar o número de lesões;
-- Obter características da forma das lesões;
-- Contar objetos em uma imagem;
-- Obter características dos objetos (área, perímetro, raio, circularidade, excentricidade, solidez, alongamento);
-- Obter os valores RGB para cada objeto em uma imagem;
-- Obter as coordenadas dos objetos;
-- Obter os contornos dos objetos;
-- Isolar objetos;
-- Medições de objetos de plotagem.
+-   Medir a severidade das doenças foliares;
+-   Contar o número de lesões;
+-   Obter características da forma das lesões;
+-   Contar objetos em uma imagem;
+-   Obter características dos objetos (área, perímetro, raio, circularidade, excentricidade, solidez, alongamento);
+-   Obter os valores RGB para cada objeto em uma imagem;
+-   Obter as coordenadas dos objetos;
+-   Obter os contornos dos objetos;
+-   Isolar objetos;
+-   Medições de objetos de plotagem.
 
 # Instalação
 
@@ -70,10 +67,9 @@ citation("pliman")
 
 Os resultados gerados pelo pacote `pliman` são retornados como objetos `data.frame`, o que permite manipulação futura dentro do R. Portanto, sugere-se que os seguintes pacotes sejam instalados.
 
-```{r warning=FALSE, mensagem = FALSE}
+```{r warning=FALSE, mensagem = FALSE, eval=FALSE}
 library(tidyverse) # manipulação de dados
 library(metan) # estatísticas descritivas / organizar gráficos
-library(pliman) # análise de imagem
 ```
 
 # Como reproduzir
@@ -108,10 +104,9 @@ knitr::include_url('https://tiagoolivoto.github.io/slides_R/slides/pliman_tut')
 
 ```
 
-
 # Licença
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/TiagoOlivoto/tiagoolivoto/master/static/img/gemsr/license.jpg" alt="Licença Creative Commons" style="border-width:0" width="300" height="80"/></a><br />Este conteúdo está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>. O resumo legível da licença afirma que você tem o direito de:
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/TiagoOlivoto/tiagoolivoto/master/static/img/gemsr/license.jpg" alt="Licença Creative Commons" style="border-" width="180" height="54"/></a><br />Este conteúdo está licenciado com uma Licença <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons - Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional</a>. O resumo legível da licença afirma que você tem o direito de:
 
 -   **Compartilhar** --- copie e redistribua o material em qualquer meio ou formato.
 

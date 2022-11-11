@@ -11,22 +11,21 @@ knitr::opts_chunk$set(cache = FALSE,
 
 ```
 
-
 ```{r include = FALSE}
 knitr::opts_knit$set(root.dir = "E:/Desktop/UFSC/projetos/pesquisa/desempenho_linhaca/pliman_rbras2022/imgs")
 ```
 
 # Diretório
+
 ```{r eval=FALSE}
 setwd("E:/Desktop/UFSC/projetos/pesquisa/desempenho_linhaca/pliman_rbras2022/imgs")
 ```
 
-
-
 # Pacote e imagem
+
 ```{r}
 library(pliman)
-img <- image_import("img3.jpg")
+img <- image_import("img3.jpg") |> image_vertical()
 
 ```
 
@@ -43,7 +42,7 @@ plot(cinza, type = "density")
 
 ```{r}
 image_binary(img, "R/(G/B)")
-image_binary(img, "R/(G/B)", filter = 3)
+image_binary(img, "R/(G/B)", filter = 3) |> image_export("binary.png")
 ```
 
 # Imagem segmentada
@@ -52,8 +51,8 @@ image_binary(img, "R/(G/B)", filter = 3)
 image_segment(img, index = "R/(G/B)", filter = 3)
 ```
 
-
 # Análise de imagem única
+
 ```{r}
 
 res <- 
@@ -63,11 +62,19 @@ res <-
                   back_fore_index = "R/(G/B)", # padrão
                   fore_ref_index = "B-R",      # padrão
                   marker = "length",           # plota o comprimento
+                  save_image = TRUE,
+                  marker_size = 4,
+                  contour_size = 3,
+                  filter = 2,
                   watershed = FALSE)
+res$results
+plot_measures(res, measure = "id", vjust = -50, size = 0.5) # plota o id
+get_measures(res)
+
 ```
 
-
 # Análise de imagem em lote
+
 ```{r}
 
 res <- 
@@ -78,12 +85,114 @@ res <-
                   marker = "length",
                   save_image = TRUE,           # salva a imagem
                   dir_processed = "proc",      # cria uma subpasta 
-                  marker_size = 2,
                   watershed = FALSE)
 ```
 
+# Gráficos
 
+```{r}
+#| out-width: "100%"
+#| code-fold: true
+#| code-summary: "Mostrar código"
+
+library(rio)
+library(tidyverse)
+library(ggridges)
+library(ggside)
+my_theme <- 
+  theme_bw(base_size = 16) +
+  theme(
+    panel.grid.minor = element_blank(),
+    legend.title = element_blank()
+  )
+
+
+df_folha <- import("area_foliar.xlsx")
+
+df_vars <- 
+  df_folha |> 
+  select(das, area, length, width) |> 
+  set_names(c("das", "Área (cm2)", "Comprimento (cm)", "Largura (cm)")) |> 
+  pivot_longer(-das)
+
+ggplot(df_vars, aes(x = value, y = factor(das))) +
+  geom_density_ridges(fill = "steelblue") +
+  labs() +
+  facet_wrap(~name, scales = "free") + 
+  labs(x = "Valor mensurado",
+       y = "Dias após a semeadura") +
+  my_theme
+
+ggsave("density.png", width = 12, height = 4)
+
+p1 <-
+  df_folha |> 
+  filter(das %in% c(42, 100)) |> 
+  ggplot(aes(length, area)) +
+  geom_xsidedensity(aes(x = length, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_ysidedensity(aes(y = area, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_point(aes(fill = factor(das)),
+             color = "black",
+             shape = 21,
+             size = 2,
+             alpha = 0.7) +
+  geom_smooth(method = "lm",
+              aes(color = factor(das)),
+              se = FALSE) +
+  labs(x = "Comprimento (cm)",
+       y = expression(Área~da~folha~(cm^2))) +
+  my_theme 
+
+p2 <- 
+  df_folha |> 
+  subset(das %in% c(42, 100)) |> 
+  ggplot(aes(width, area)) +
+    geom_xsidedensity(aes(x = width, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_ysidedensity(aes(y = area, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_point(aes(fill = factor(das)),
+             color = "black",
+             shape = 21,
+             size = 2,
+             alpha = 0.7) +
+  geom_smooth(method = "lm",
+              aes(color = factor(das)),
+              se = FALSE) +
+  labs(x = "Largura (cm)",
+       y = expression(Área~da~folha~(cm^2))) +
+  my_theme 
+p3 <- 
+  df_folha |> 
+  subset(das %in% c(42, 100)) |> 
+  ggplot(aes(width, length)) +
+      geom_xsidedensity(aes(x = width, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_ysidedensity(aes(y = length, fill = factor(das)),
+                    alpha = 0.7) +
+  geom_point(aes(fill = factor(das)),
+             color = "black",
+             shape = 21,
+             size = 2,
+             alpha = 0.7) +
+  geom_smooth(method = "lm",
+              aes(color = factor(das)),
+              se = FALSE) +
+  labs(x = "Largura (cm)",
+       y = "Comprimento (cm)") +
+  my_theme 
+
+
+library(metan)
+arrange_ggplot(p1, p2, p3,
+               tag_levels = "a",
+               guides = "collect")
+ggsave("scatter.png", width = 12, height = 4)
+
+```
 
 ```{=html}
-<div align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=138602&s=2' border='0' alt='Free Website Hit Counter'></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">Free website hit counter</a></small></div>
+<div align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=140215&s=2' border='0' alt='Free Website Hit Counter'></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter">Free website hit counter</a></small></div>
 ```
